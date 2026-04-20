@@ -2147,14 +2147,14 @@ end
 local GLOBAL_ENV = getgenv and getgenv() or _G or shared
 
 --[=[
-    @class SynSaveInstance
-    Represents the options for saving instances with custom settings using the synsaveinstance function.
+    @class SaveInstance
+    Represents the options for saving instances with custom settings using the saveinstance function.
 ]=]
 
 --- @interface CustomOptions table
 --- * Structure of the main CustomOptions table.
 --- * Note: Options are case-insensitive, meaning you could type `NilInstances` option as `nilInStaNces` and it would still be valid.
---- @within SynSaveInstance
+--- @within SaveInstance
 --- @field __DEBUG_MODE boolean -- This will print debug logs to console about unusual scenarios. Recommended to enable if you wish to help us improve our products and find bugs / issues with it! ___Default:___ false
 --- @field ReadMe boolean --___Default:___ true
 --- @field SafeMode boolean -- Kicks you before Saving, which prevents you from being detected in any game. **HIGHLY RECOMMENDED TO KEEP ENABLED**. ___Default:___ true
@@ -2200,8 +2200,8 @@ local GLOBAL_ENV = getgenv and getgenv() or _G or shared
 --- @field TreatUnionsAsParts boolean -- * **RISKY:** Converts all UnionOperations to Parts. Useful if your Executor isn't able to save (read) Unions, because otherwise they will be invisible. ___Default:___ false (except Solara)
 
 --- @interface OptionsAliases
---- @within SynSaveInstance
---- Aliases for the [SynSaveInstance.CustomOptions table]. Format: {Option -- Alias1, Alias2}
+--- @within SaveInstance
+--- Aliases for the [SaveInstance.CustomOptions table]. Format: {Option -- Alias1, Alias2}
 --- @field FilePath string -- FileName
 --- @field IgnoreDefaultProperties string -- IgnoreDefaultProps
 --- @field SaveNotCreatable string -- SaveNonCreatable
@@ -2218,20 +2218,20 @@ local GLOBAL_ENV = getgenv and getgenv() or _G or shared
 	Saves instances with specified options. Example:
 	```lua
 	local Params = {
-		RepoURL = "https://raw.githubusercontent.com/luau/UniversalSynSaveInstance/main/",
+		RepoURL = "https://raw.githubusercontent.com/luau/UniversalSaveInstance/main/",
 		SSI = "saveinstance",
 	}
 
-	local synsaveinstance = loadstring(game:HttpGet(Params.RepoURL .. Params.SSI .. ".luau", true), Params.SSI)()
+	local saveinstance = loadstring(game:HttpGet(Params.RepoURL .. Params.SSI .. ".luau", true), Params.SSI)()
 
 	local CustomOptions = { SafeMode = true, timeout = 15, SaveBytecode = true }
 
-	synsaveinstance(CustomOptions)
+	saveinstance(CustomOptions)
 	```
-	@within SynSaveInstance
+	@within SaveInstance
 	@yields
-	@param Parameter_1 variant<table, table<Instance>> -- Can either be [SynSaveInstance.CustomOptions table] or a filled with instances ({Instance}), (then it will be treated as ExtraInstances with an invalid mode and IsModel will be true).
-	@param Parameter_2 table -- [OPTIONAL] If present, then Parameter_2 will be assumed to be [SynSaveInstance.CustomOptions table]. And then if the Parameter_1 is an Instance, then it will be assumed to be [SynSaveInstance.CustomOptions table].Object. If Parameter_1 is a table filled with instances ({Instance}), then it will be assumed to be [SynSaveInstance.CustomOptions table].ExtraInstances and IsModel will be true). This exists for sake compatibility with `saveinstance(game, {})`
+	@param Parameter_1 variant<table, table<Instance>> -- Can either be [SaveInstance.CustomOptions table] or a filled with instances ({Instance}), (then it will be treated as ExtraInstances with an invalid mode and IsModel will be true).
+	@param Parameter_2 table -- [OPTIONAL] If present, then Parameter_2 will be assumed to be [SaveInstance.CustomOptions table]. And then if the Parameter_1 is an Instance, then it will be assumed to be [SaveInstance.CustomOptions table].Object. If Parameter_1 is a table filled with instances ({Instance}), then it will be assumed to be [SynSaveInstance.CustomOptions table].ExtraInstances and IsModel will be true). This exists for sake compatibility with `saveinstance(game, {})`
 ]=]
 
 local function saveinstance(CustomOptions, CustomOptions2)
@@ -2681,7 +2681,7 @@ local function saveinstance(CustomOptions, CustomOptions2)
 		end
 
 		if GLOBAL_ENV[placename] then -- ? AvoidFileOverwrite kinda messes with this, but shouldn't be an issue
-			-- warn("UniversalSynSaveInstance is already saving to this file")
+			-- warn("UniversalSaveInstance is already saving to this file")
 			return
 		end
 
@@ -3492,7 +3492,7 @@ local function saveinstance(CustomOptions, CustomOptions2)
 											end
 										end
 
-										value = "-- Saved by UniversalSynSaveInstance (Join to Copy Games) https://discord.gg/wx4ThpAsmw\n\n"
+										value = "-- Saved by UniversalSaveInstance (Join to Copy Games) https://discord.gg/wx4ThpAsmw\n\n"
 											.. (hasLinkedSource and "-- Original Source: https://assetdelivery.roblox.com/v1/asset/?" .. (LinkedSource_type or "id") .. "=" .. (LinkedSource or LinkedSource_Url) .. "\n\n" or "")
 											.. value
 									end
@@ -3687,7 +3687,7 @@ local function saveinstance(CustomOptions, CustomOptions2)
 						RecoveredScripts
 					) .. "\n" or "")
 					.. [[
-		Thank you for using UniversalSynSaveInstance (Join to Copy Games) https://discord.gg/wx4ThpAsmw.
+		Thank you for using UniversalSaveInstance (Join to Copy Games) https://discord.gg/wx4ThpAsmw.
 
 		If you didn't save in Binary (rbxl) - it's recommended to save the game right away to take advantage of the binary format & to preserve values of certain properties if you used IgnoreDefaultProperties setting (as they might change in the future).
 		You can do that by going to FILE -> Save to File As -> Make sure File Name ends with .rbxl -> Save
@@ -3752,7 +3752,7 @@ local function saveinstance(CustomOptions, CustomOptions2)
 		end
 
 		savebuffer[savebuffer_size] =
-			"</roblox><!-- Saved by UniversalSynSaveInstance (Join to Copy Games) https://discord.gg/wx4ThpAsmw -->"
+			"</roblox><!-- Saved by UniversalSaveInstance (Join to Copy Games) https://discord.gg/wx4ThpAsmw -->"
 		savebuffer_size += 1
 		save_cache(true)
 		do
