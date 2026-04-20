@@ -1,12 +1,11 @@
 # LIST OF WORKING GETHIDDENPROPERTY EXEC: Fluxus,Swift,Velocity,Xeno
-# https://github.com/luau/UniversalSynSaveInstance
 
 # Loadstring
 
 ```lua
-local synsaveinstance = loadstring(game:HttpGet("https://raw.githubusercontent.com/NeonDeveloper-byte/UniversalSynSaveInstance/refs/heads/main/saveinstance.luau", true), "saveinstance")();
+local saveinstance = loadstring(game:HttpGet("https://raw.githubusercontent.com/NeonDeveloper-byte/UniversalSynSaveInstance/refs/heads/main/saveinstance.luau", true), "saveinstance")();
 local SaveinstanceOptions = {usekonstantdecompiler=false} --set to true if u dont have a decompiler
-synsaveinstance(SaveinstanceOptions);
+saveinstance(SaveinstanceOptions);
 ```
 
 # Disclaimer
