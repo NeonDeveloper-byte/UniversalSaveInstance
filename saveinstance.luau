@@ -2259,7 +2259,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 		noscripts = false,
 		scriptcache = true,
 		-- decomptype = "",
-		timeout = 20,
+		timeout = 3,
 		-- * New:
 		__DEBUG_MODE = false,
 
