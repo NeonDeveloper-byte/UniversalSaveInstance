@@ -1,4 +1,4 @@
-[Discord](https://discord.gg/cbg4ARTpDJ)
+[Discord](https://discord.gg/72txPvDK4f)
 join our own discord server if u want lol
 
 # LIST OF WORKING GETHIDDENPROPERTY EXEC: FLUXUS,SWIFT,velocity
