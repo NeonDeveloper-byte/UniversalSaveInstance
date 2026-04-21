@@ -2990,10 +2990,10 @@ local function saveinstance(CustomOptions, CustomOptions2)
 						if dc then ignored = dc == true or dc[inst.Name] end
 					end
 					if not ignored then
-						local isLocal = inst:IsA("LocalScript")
-						local isMod = inst:IsA("ModuleScript")
-						local isClient = inst:IsA("Script") and inst.RunContext == Enum.RunContext.Client
-						if isLocal or isMod or isClient then
+					local ok3, isLocal  = pcall(function() return inst:IsA("LocalScript") end)
+					local ok4, isMod    = pcall(function() return inst:IsA("ModuleScript") end)
+					local ok5, isClient = pcall(function() return inst:IsA("Script") and inst.RunContext == Enum.RunContext.Client end)
+					if (ok3 and isLocal) or (ok4 and isMod) or (ok5 and isClient) then
 							table.insert(scripts, inst)
 						end
 					end
@@ -3008,13 +3008,13 @@ local function saveinstance(CustomOptions, CustomOptions2)
 		if total == 0 then return end
 
 		local completed, active = 0, 0
-		local CONCURRENCY = 4
+        local CONCURRENCY = 2
 
-		for _, scr in scripts do
-			while active >= CONCURRENCY do task.wait() end
-			active += 1
-			task.spawn(function()
-				ldecompile(scr)
+        for _, scr in scripts do
+        while active >= CONCURRENCY do task.wait() end
+        active += 1
+        task.spawn(function()
+        pcall(ldecompile, scr)
 				active -= 1
 				completed += 1
 				if StatusText then
